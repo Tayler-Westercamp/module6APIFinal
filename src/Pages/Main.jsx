@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../Components/Spinner";
 
 const Main = ({ searchTerm }) => {
   let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false)
   const [inputValue, setInputValue] = useState("");
   const [movies, setMovies] = useState([]);
 
@@ -15,11 +17,13 @@ const Main = ({ searchTerm }) => {
   }, []);
 
   const mainPageSearchUpdate = async (searchTerm) => {
+    setIsLoading(true)
     const { data } = await axios.get(
       `https://www.omdbapi.com/?s=${searchTerm || inputValue}&apikey=a91ed9b`
     );
     const { Search } = data;
     setMovies(Search);
+    setIsLoading(false)
   };
 
   const executeSearch = () => {
@@ -33,7 +37,7 @@ const Main = ({ searchTerm }) => {
   return (
     <>
       <div className="search__container">
-        <h1 className="search__title">Find your next favorite movie!</h1>
+        <h1 className="search__title">Click a Movie For More Details!</h1>
         <div className="search__bar--container">
           <input
             type="text"
@@ -43,7 +47,7 @@ const Main = ({ searchTerm }) => {
             onChange={(event) => setInputValue(event.target.value)}
             onKeyDown={(event) => event.key === "Enter" && executeSearch()}
           />
-          <i className="fas fa-spinner movies__loading--spinner"></i>
+          {isLoading && <Spinner />}
         </div>
       </div>
       <section id="movies">

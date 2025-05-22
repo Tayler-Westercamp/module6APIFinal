@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../Components/Spinner";
 
 const Home = ({ setSearchTerm }) => {
     const [inputValue, setInputValue] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
   
   let navigate = useNavigate();
 
   const executeSearch = () => {
+    setIsLoading(true)
     setSearchTerm(inputValue);
+    setIsLoading(false)
     navigate("/main");
   }
 
@@ -28,7 +32,7 @@ const Home = ({ setSearchTerm }) => {
               event.key === "Enter" && executeSearch()
             }
           />
-          <i className="fas fa-spinner movies__loading--spinner"></i>
+          {isLoading && <Spinner />}
         </div>
         <section id="movies_background"></section>
       </div>
