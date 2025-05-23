@@ -34,7 +34,12 @@ const Home = ({ setSearchTerm }) => {
           />
           {isLoading && <Spinner />}
         </div>
-        <section id="movies_background"></section>
+        <section className="filler"> 
+            <figure className="nav__logo--wrapper">
+                <i className="fa-solid fa-film nav__logo"></i>
+            </figure>
+            <h1 className="company__name">Filmtastic</h1>
+        </section>
       </div>
     </section>
   );

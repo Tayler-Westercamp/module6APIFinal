@@ -394,7 +394,8 @@ MOVIE DETAILS
 
 */
 
-.movie-detail-container {
+.movie-detail-container,
+.filler {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -409,6 +410,7 @@ MOVIE DETAILS
   width: 100%;
 }
 
+.filler_logo_img
 .movie_detail_img_wrapper img {
   width: 300px;
   height: auto;
@@ -417,7 +419,7 @@ MOVIE DETAILS
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-
+.filler_logo,
 .movie_detail_description_wrapper {
   display: flex;
   flex-direction: column;
